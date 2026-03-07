@@ -9,6 +9,7 @@
 \usepackage{cancel}
 \usepackage{float}
 \usepackage{amssymb}
+\usepackage{bbm}
 \usepackage{mathtools}
 
 \usepackage[colorlinks=true, linkcolor=blue, urlcolor=black]{hyperref}
@@ -116,6 +117,87 @@ Dove $T$ è il T-Prodotto così definito:
  \end{cases}
 \end{equation}
 E invece $\epsilon$ è un infinitesimo positivo tale per fare lungo l'asse reale $p_0$ in quanto vi sono dei poli in $p_0 = \pm(E_p - i\epsilon)$ (Vi sono altri cammini di integrazione possibili, ma questo è il più utile.)
+\section{Teorie di particelle non libere}
+
+Si è quindi visto come funziona la teoria di particelle libere. Inoltre in quanto libero il campo soddisfa le equazioni di Klein Gordon che è lineare rispetto al campo, cioè vige il principio di sovrapposizione (come nella equazione di Schrödinger). Quindi i campi liberi (cioè pacchetti d'onda) si propagano nello spaziotempo e quanso si incontrano si sovrappongono e poi coninuano come non ci fosse stata alcuna sovrapposizione. Di conseguenza un in un campo libero non succede nulla di interessante. Si introducono quindi delle interazioni, che hanno il compito di rendere le equazioni del moto non lineari (di fatto aggiungendo potenze più alte di $\hat \phi$). Si aggiungi quindi un ad esempio un termine di quarto ordine nella densità lagrangiana:
+\begin{equation}
+ \Lag = \frac{1}{2} \left(  \partial_\mu \phi^ 2 \right)  -\frac{1}{2} m^2 \phi^2 -\frac{\lambda}{4!} \phi^4
+\end{equation}
+Dove $\lambda$ è detta costante di accoppiamento. L'equazione del moto è:
+\begin{equation}
+ \left( \square + m^2 \right) \phi = - \frac{\lambda}{3!} \phi^3
+\end{equation}
+In questo caso la densità della hamiltoniana è definita positiva (in quanto si è sottratto un potenziale nella lagrangiana, per cui lo si aggiunge nella hamiltoniana) se $\lambda$ è definita positiva. Questo non sarebbe stato vero se si fosse inserito un termine proporzionale a $\phi^3$, poiché si avrebbero valori di $\phi$ tali che l'hamiltoniana non è più definita positiva. \\
+
+Questa equazione non è però risolvibile esattamente, anzi si può dimostrare che se l'ordine della equazione è $>2$ non esiste teoria interagente analiticamente e esattamente risolvibile. Una tecnica è quindi usare un approccio perturbativo, cioè quando $\lambda \ll 1$ (e quando è anche adimensionale) (Vi sono però anche altre strade che riguardano approcci numerici/funzionali).\\
+In una teoria non libera però le interazioni sono esclusivamente locali, che è un bene in quanto sennò si perde la garanzia di causalità, che sono del tipo:
+\begin{equation}
+ \frac{g_m}{4!}\phi^n \quad \text{dove } [g_m] = [M]^{4-n}
+\end{equation}
+A questo punto si consideri una osservabbile qualsiasi $q$ dove $q_0$ è il valore di essa in teoria libera. La sua espansione perturbativa è quindi data da:
+\begin{equation}
+ q = q_0 \left(1 + x_q g_m E^{n-4} + O(g^2_m) \right)
+\end{equation}
+dove $x_q$ è un coefficiente adimensionale di ordine $1$ e la potenza della energia è data da $n-4$ affinché il fattore $g_m E^{n-4}$ sia adimensionale. Se $n>4$ si hanno potenze positive nell'energia, quindi si hanno piccole correzioni a basse energie e vengono quindi dette irrelevanti. Inveve per $n < 4$ si hanno potenze negative e quindi dette rilevanti. Se $n = 4$ sono definite marginali.
+\\
+Si vuole quindi trovare il propagatore di Feymann per questa teoria interagente di $\phi ^ 4$ (sebbene i risultati trovati saranno generali).\\
+Si scrive quindi $H$ come $H = H_0 + H_\text{int}$ (parte libera e parte interagente), dove $H_\text{int} = \int d^3 x \frac{\lambda}{4!} \phi (\vec x)^4$ può essere indipendente o dipendente dal tempo, in particolare lo è in rappresentazione di Heisenberg, no in quella di Schrödinger. Inoltre in quanto $H$ è modificata in due modi da $H_\text{int}$
+\begin{itemize}
+ \item $H_\text{int}$ cambia la dipendenza temporale del campo, come visto, in quanto $H$ è modificata
+\item $H_\text{int}$ cambia lo stato di vuoto. Infatti $|\Omega\rangle \neq | 0 \rangle $
+\end{itemize}
+Si può quantizzare il campo analogamente a prima introducendo:
+\begin{equation}
+ \hat \phi (t_o; \vec x) = \int \frac{d^3 p}{(2 \pi)^3} \frac{1}{\sqrt{2 E_p}} \left( \hat a_{\vec p} \: e^{ i \vec p \cdot \vec x} + \hat a_{\vec p}^\dagger \: e^{-i \vec p \cdot \vec x} \right) \equiv \phi_S(\vec x)
+\end{equation}
+Dove però $t_0$ non è necessariamente pari a zero. Inoltre a differenza del caso libero $\hat a$ e $\hat a^\dagger$ non sono più gli stessi di prima. Fatta questa precisazione si può scrivere il campo in rappresentazione di Heisenberg quando $t \neq t_0$ come:
+\begin{equation}
+ \hat \phi (t; \vec x) = e^{i \hat H (t-t_0)} \; \hat \phi (t_o; \vec x) \; e^{- i \hat H (t-t_0)}
+\end{equation}
+Visto che però $\hat H_\text{int} \ll \hat H_0$ si può introdurre un campo $\hat \phi (t; \vec x)$ che evolve solamente con $H_0$:
+\begin{equation}
+ \hat \phi_I (t; \vec x) = e^{i \hat H_0 (t-t_0)} \; \hat \phi(t_0; \vec x) \; e^{-i \hat H_0 (t-t_0)}
+\end{equation}
+Ottenendo quindi una nuova rappresentazione, detta di interazione. $\hat \phi_I$ è quindi un campo libero con condizioni iniziali dettate da un campo non libero, quindi si ha che la rappresentazione di Heisenberg di $\hat \phi_I$ è pari a quella di un campo libero:
+\begin{equation}
+ \hat \phi_I (x) = \int \frac{d^3 p}{(2\pi)^2} \frac{1}{\sqrt{2 E_p}}\left. \left( \hat a_{\vec{p}} e^{-ipx} + \hat a_{\vec{p}}^\dagger e^{+ipx} \right) \right|_{p^0 = E_p \enspace x^0 = t-t_0}
+\end{equation}
+Per ottenere quindi $\hat \phi (t;\vec x)$ allora basta riscrivere $\phi_I (t; \vec x)$ usando la sua definiziione (22) e usandola nella (21):
+\begin{align}
+ \hat \phi (t; \vec x) &= e^{-i H_0 (t-t_0)} \; \hat \phi_I(t_0; \vec x) \; e^{+i \hat H_0 (t-t_0)} \Rightarrow \hat \phi(t; \vec x)= e^{i\hat H (t-t0)} e^{-i \hat H_0 (t-t_0)} \; \hat \phi_I(t_0; \vec x) \; e^{+i \hat H_0 (t-t_0)} e^{-i\hat H (t-t_0)} \\
+ &= \hat U^\dagger(t;t_0) \; \phi_I(t_0; \vec x) \; \hat U(t;t_0)
+\end{align}
+Dove $\hat U(t;t_0)$ è l'operatore di evoluzione temporale nella rappresentazione d'interazione.\\
+Usando le proprietà delle potenze si può affermare che $\hat U \sim e^{-\hat H_\text{int} (t-t_0)}$, e non si ha una equavalenza esatta in quanto la commutazione $[\hat H_0 ; H_\text{int}] \neq 0$ solitamente (ma non sempre). Si può però ottenere la sua forma esatta:
+%\begin{equation}
+ %\hat U(t; t_0) = e^{i\hat H_0 (t-t_0)}e^{-i\hat H (t-t_0)}
+%\end{equation}
+Per ottenerla si scrive la seguente equazione differenziale:
+\begin{align}
+  U(t; t_0) &= e^{i\hat H_0 (t-t_0)}e^{-i\hat H (t-t_0)} \Rightarrow\\
+ \Rightarrow \frac{\partial \hat U (t;t_0)}{\partial t} &= e^{i \hat H_0(t-t_0)} \left(-\hat H_0 + \hat H \right) e^{-i \hat H (t-t_0)} \quad \text{In quanto $\hat H$ commuta con $\hat U$ }\\
+  &=e^{i \hat H_0(t-t_0)} \hat H_\text{int} \mathbb{I} \:  e^{-i \hat H(t-t_0)}\\
+  &= e^{i \hat H_0(t-t_0)} \hat H_\text{int} \: e^{-i \hat H_0(t-t_0)} \: e^{i \hat H_0(t-t_0)} e^{-i \hat H(t-t_0)}\\
+  &=\hat H_i(t) \; \hat U(t;t_0)
+\end{align}
+
+Sapendo che:
+\begin{equation}
+ \hat H_I(t) = \frac{\lambda}{4!} \int d^4 x \, e^{i \hat H_0(t-t_0)} \hat \phi(t_0; x)^4 e^{-i \hat H_0(t-t_0)}
+\end{equation}
+scrivendo gli esponenziali a sinistra e a destra del campo per altre tre volte (in quanto sono l'idenità assieme e il campo commuta con l'operatore poichè non è a tempo fissato) si ha:
+\begin{equation}
+ \hat H_I ( x) = \frac{\lambda}{4!} \int d^4 x \, \hat \phi(t_0; x)^4
+\end{equation}
+Si trova che:
+\begin{equation}
+  \hat U(t;t:0) = \mathbbm{1} - i\int^t_{t_0} \hat H_I (t_1) dt_1 + (-i)^2 \int^t_{t_0}dt_1 \, \int_{t_0}^{t_1} dt_2 \, \hat H_I (t_1) \hat H_2 (t_2) + \cdots
+  \end{equation}
+Questo può essere verificato vedendo che effettivamente tale espressione risolve l'equazione differenziale ottenuta in precedenza:
+\begin{align}
+ \frac{\partial \hat U (t;t_0)}{\partial t} &= \hat H_I \left[ \mathbbm{1} - i\int^t_{t_0} \hat H_I (t_1) dt_1 + (-i)^2 \int^t_{t_0}dt_1 \, \int_{t_0}^{t_1} dt_2 \, \hat H_I (t_1) \hat H_2 (t_2) + \cdots \right] \\ & = \hat H_I \hat U(t;t_0)) \qquad \square
+\end{align}
+
 \end{document}
 
 
